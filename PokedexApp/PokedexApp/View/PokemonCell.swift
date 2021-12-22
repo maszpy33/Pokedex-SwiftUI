@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct PokemonCell: View {
+    let pokemon: Pokemon
+    let darkPurple = Color(red: 0.4, green: 0.1, blue: 0.6)
+    
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
-                Text("Bulbasaur")
+                Text(pokemon.name)
                     .font(.headline)
                     .foregroundColor(.white)
-                    .padding(.top, 4)
+                    .padding(.top, 8)
                     .padding(.leading)
                 
                 HStack {
-                    Text("poison")
+                    Text(pokemon.type)
                         .font(.subheadline).bold()
                         .foregroundColor(.white)
                         .padding(.vertical, 8)
@@ -29,21 +32,22 @@ struct PokemonCell: View {
                         )
                         .frame(width: 100, height: 24)
                     
-                    Image("Bulbasaur")
+                    Image("Gengar_Logo")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 68, height: 68)
-                        
+                        .padding([.bottom, .trailing], 4)
                 }
             }
         }
-        .background(Color.green)
+        .background(darkPurple)
         .cornerRadius(12)
+        .shadow(color: .purple, radius: 6, x: 0.0, y: 0.0)
     }
 }
 
 struct PokemonCell_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonCell()
+        PokemonCell(pokemon: MOCK_POKEMON[6]).preferredColorScheme(.dark)
     }
 }
