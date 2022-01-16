@@ -12,15 +12,25 @@ struct PokedexView: View {
     
     @ObservedObject var viewModel = PokemonViewModel()
     
+    @State private var numb = 0
+    
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVGrid(columns: gridItems, spacing: 16) {
-                    ForEach(viewModel.pokemon) { pokemon in
-                        PokemonCell(pokemon: pokemon)
+            VStack {
+                Button("Test Button") {
+                    numb = Int.random(in: 0...1000)
+                    print("____________TEST\(numb)____________")
+                }
+                
+                ScrollView {
+                    LazyVGrid(columns: gridItems, spacing: 16) {
+                        ForEach(viewModel.pokemon) { pokemon in
+                            PokemonCell(pokemon: pokemon)
+                        }
                     }
                 }
             }
+            
             .navigationTitle("Pokedex")
         }
     }

@@ -17,11 +17,26 @@ class PokemonViewModel: ObservableObject {
     }
     
     func fetchPokemon() {
-        guard let url = URL(string: baseURL) else { return }
+        guard let url = URL(string: baseURL) else {
+            print("ERROR 1: url not found")
+            return
+        }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data?.parseData(removeString: "null,") else { return }
-            guard let pokemon = try? JSONDecoder().decode([Pokemon].self, from: data) else { return }
+            guard let data = data?.parseData(removeString: "null,") else {
+                print("ERROR 2: removing null failed")
+                return
+                
+            }
+            
+            guard let pokemon = try? JSONDecoder().decode([Pokemon].self, from: data) else {
+                print("ERROR 3: decoding failed")
+                return
+            }
+            
+            print("_________________")
+            print(pokemon)
+            print("_________________")
             
             DispatchQueue.main.async {
                 self.pokemon = pokemon
