@@ -13,7 +13,6 @@ struct PokedexView: View {
     
     var body: some View {
         NavigationView {
-            
             List {
                 ForEach(searchText == "" ? pokemon : pokemon.filter( {$0.name.contains(searchText.lowercased())} )) { entryPokemon in
                     HStack {
@@ -21,7 +20,7 @@ struct PokedexView: View {
                             .padding(.trailing, 20)
                         
 //                        NavigationLink("\(entryPokemon.name)".capitalized ,destination: Text("Detail view for \(entryPokemon.name)"))
-                        NavigationLink(destination: PokemonDetailsView(url: "\(entryPokemon.url)", pokeName: "\(entryPokemon.name)")) {
+                        NavigationLink(destination: PokemonDetailsView(url: "\(entryPokemon.url)", pokeName: "\(entryPokemon.name)", selectedPokemon: entryPokemon)) {
                             Text("\(entryPokemon.name)".capitalized)
                         }
                     }
