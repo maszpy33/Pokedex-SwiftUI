@@ -15,18 +15,18 @@ struct PokedexView: View {
         NavigationView {
             
             List {
-                ForEach(searchText == "" ? pokemon: pokemon.filter( {$0.name.contains(searchText.lowercased())} )) {
-                    entry in
-                    
+                ForEach(searchText == "" ? pokemon : pokemon.filter( {$0.name.contains(searchText.lowercased())} )) { entryPokemon in
                     HStack {
-                        PokemonImage(imageLink: "\(entry.url)")
+                        PokemonImage(imageLink: "\(entryPokemon.url)")
                             .padding(.trailing, 20)
                         
-                        NavigationLink("\(entry.name)".capitalized ,destination: Text("Detail view for \(entry.name)"))
+//                        NavigationLink("\(entryPokemon.name)".capitalized ,destination: Text("Detail view for \(entryPokemon.name)"))
+                        NavigationLink(destination: PokemonDetailsView(url: "\(entryPokemon.url)", pokeName: "\(entryPokemon.name)")) {
+                            Text("\(entryPokemon.name)".capitalized)
+                        }
                     }
                 }
             }
-            
             .onAppear {
                 PokemonApi().getData() { pokemon in
                     self.pokemon = pokemon

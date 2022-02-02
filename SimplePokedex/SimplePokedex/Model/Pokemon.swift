@@ -18,6 +18,5 @@ struct PokemonEntry: Codable, Identifiable {
     let id = UUID()
     var name: String
     var url: String
+//    var weight: Int
 }
-
-
