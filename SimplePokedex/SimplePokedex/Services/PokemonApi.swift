@@ -28,5 +28,4 @@ class PokemonApi {
             }
         }.resume()
     }
-    
 }

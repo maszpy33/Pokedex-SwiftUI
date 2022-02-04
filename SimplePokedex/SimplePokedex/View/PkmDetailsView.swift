@@ -7,17 +7,6 @@
 
 import SwiftUI
 
-extension Color {
-    init?(colorStr: String) {
-        switch colorStr {
-        case "grass": self = .green
-        case "blue": self = .blue
-        case "fire": self = .red
-        case "electric": self = .yellow
-        default: return nil
-        }
-    }
-}
 
 struct PokemonDetailsView: View {
     var url = ""
@@ -33,25 +22,37 @@ struct PokemonDetailsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                PokemonImage(imageLink: "\(selectedPokemon.url)", imgWidth: CGFloat(220), imgHeight: CGFloat(220))
-                    .padding(.bottom, 40)
-                
-                VStack(alignment: .leading) {
+                VStack {
+                    PokemonImage(imageLink: "\(selectedPokemon.url)", imgWidth: CGFloat(220), imgHeight: CGFloat(220))
+                        .padding(.bottom, 40)
+                        .frame(width: 250, height: 250)
+                        .background(Color(red: 0.1, green: 0.1, blue: 0.1))
+                        .clipShape(RoundedRectangle(cornerRadius: 25))
+                    
                     Text("Name: \(pokeName)".capitalized)
                         .bold()
                         .font(.title2)
                         .padding(5)
+                }
+                
+                VStack(alignment: .leading) {
                     HStack {
-                        Text("Types:")
-                            .bold()
-                            .font(.title2)
                         if types.count == 1 || types.count > 2 {
+                            Text("Type:")
+                                .bold()
+                                .font(.title2)
                             Text("\(types[0].type.name)".capitalized)
                                 .bold()
                         } else if types.count == 2 {
+                            Text("Types:")
+                                .bold()
+                                .font(.title2)
                             Text("\(types[0].type.name), \(types[1].type.name)".capitalized)
                                 .bold()
                         } else {
+                            Text("Types:")
+                                .bold()
+                                .font(.title2)
                             Text("no type avaliable")
                         }
                     }
@@ -65,11 +66,12 @@ struct PokemonDetailsView: View {
                         .font(.title2)
                     
                 }
-                .padding(50)
-                .background(Color(red: 0.1, green: 0.1, blue: 0.1))
-                .clipShape(RoundedRectangle(cornerRadius: 25))
-                .shadow(color: shadowColor(type: self.mainType), radius: 12)
             }
+            .padding(50)
+            .background(shadowColor(type: self.mainType).brightness(-0.5))
+            .foregroundColor(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 25))
+//            .shadow(color: shadowColor(type: self.mainType), radius: 12)
         }
         .onAppear {
             PokemonSelectedApi().getPokemonData(url: url) { data in
@@ -80,29 +82,12 @@ struct PokemonDetailsView: View {
                 self.mainType = types[0].type.name
                 print("-------------------")
                 print(self.types)
+                print("\(types[0].type.name)")
                 print("Length: \(self.types.count)")
                 print("-------------------")
             }
         }
         .navigationBarTitle("\(pokeName)'s Details:".capitalized)
-    }
-    
-    private func shadowColor(type: String?) -> Color {
-        
-        if type == nil {
-            return .white
-        } else {
-            switch type {
-            case "grass":
-                return Color.green
-            case "water":
-                return Color.blue
-            case "fire":
-                return Color.red
-            default:
-                return Color.white
-            }
-        }
     }
     
     private func stupidUnitToClever(stupidUnit: Int) -> Double {
