@@ -25,7 +25,7 @@ extension UIColor {
     }
 }
 
-func shadowColor(type: String?) -> Color {
+func getTypeColor(type: String?) -> Color {
     if type == nil {
         return Color.white
     } else {
@@ -37,7 +37,7 @@ func shadowColor(type: String?) -> Color {
         case "fire":
             return Color.red
         case "bug":
-            return Color(red: 0.6, green: 0.87, blue: 0.92)
+            return Color(red: 75/255, green: 148/255, blue: 0)
         case "ghost":
             return Color.purple
         case "dark":
@@ -57,11 +57,13 @@ func shadowColor(type: String?) -> Color {
         case "rock":
             return Color(red: 0.5, green: 0.5, blue: 0.5)
         case "poison":
-            return Color(red: 1, green: 84/255, blue: 31/255)
-        case "fight":
+            return Color(red: 209/255, green: 84/255, blue: 188/255)
+        case "fighting":
             return Color(red: 1, green: 100/255, blue: 40/255)
         case "psychic":
-            return Color.pink
+            return Color(red: 203/255, green: 195/255, blue: 227/255)
+        case "normal":
+            return Color(red: 1, green: 153/255, blue: 51/255)
         default:
             return Color.white
         }

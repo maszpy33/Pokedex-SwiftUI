@@ -21,57 +21,57 @@ struct PokemonDetailsView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            ZStack {
+                Color(red: 0.1, green: 0.1, blue: 0.1)
+                
                 VStack {
                     PokemonImage(imageLink: "\(selectedPokemon.url)", imgWidth: CGFloat(220), imgHeight: CGFloat(220))
                         .padding(.bottom, 40)
-                        .frame(width: 250, height: 250)
-                        .background(Color(red: 0.1, green: 0.1, blue: 0.1))
-                        .clipShape(RoundedRectangle(cornerRadius: 25))
                     
                     Text("Name: \(pokeName)".capitalized)
                         .bold()
                         .font(.title2)
                         .padding(5)
-                }
-                
-                VStack(alignment: .leading) {
-                    HStack {
-                        if types.count == 1 || types.count > 2 {
-                            Text("Type:")
-                                .bold()
-                                .font(.title2)
-                            Text("\(types[0].type.name)".capitalized)
-                                .bold()
-                        } else if types.count == 2 {
-                            Text("Types:")
-                                .bold()
-                                .font(.title2)
-                            Text("\(types[0].type.name), \(types[1].type.name)".capitalized)
-                                .bold()
-                        } else {
-                            Text("Types:")
-                                .bold()
-                                .font(.title2)
-                            Text("no type avaliable")
+                    
+                    VStack(alignment: .leading) {
+                        HStack {
+                            if types.count == 1 || types.count > 2 {
+                                Text("Type:")
+                                    .bold()
+                                    .font(.title2)
+                                Text("\(types[0].type.name)".capitalized)
+                                    .bold()
+                            } else if types.count == 2 {
+                                Text("Types:")
+                                    .bold()
+                                    .font(.title2)
+                                Text("\(types[0].type.name), \(types[1].type.name)".capitalized)
+                                    .bold()
+                            } else {
+                                Text("Types:")
+                                    .bold()
+                                    .font(.title2)
+                                Text("no type avaliable")
+                            }
                         }
+                        .padding(10)
+                        
+                        Text("Weight: \(Double(weight) * 0.453592, specifier: "%.2f") kg")
+                            .bold()
+                            .font(.title2)
+                        Text("Height: \(Double(height) * 2.54, specifier: "%.2f") cm")
+                            .bold()
+                            .font(.title2)
+                        
                     }
-                    .padding(10)
-                    
-                    Text("Weight: \(Double(weight) * 0.453592, specifier: "%.2f") kg")
-                        .bold()
-                        .font(.title2)
-                    Text("Height: \(Double(height) * 2.54, specifier: "%.2f") cm")
-                        .bold()
-                        .font(.title2)
-                    
                 }
+                .padding(50)
+                .background(getTypeColor(type: self.mainType).brightness(-0.5))
+                .foregroundColor(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 25))
+                //            .shadow(color: shadowColor(type: self.mainType), radius: 12)
             }
-            .padding(50)
-            .background(shadowColor(type: self.mainType).brightness(-0.5))
-            .foregroundColor(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 25))
-//            .shadow(color: shadowColor(type: self.mainType), radius: 12)
+            
         }
         .onAppear {
             PokemonSelectedApi().getPokemonData(url: url) { data in
@@ -88,10 +88,6 @@ struct PokemonDetailsView: View {
             }
         }
         .navigationBarTitle("\(pokeName)'s Details:".capitalized)
-    }
-    
-    private func stupidUnitToClever(stupidUnit: Int) -> Double {
-        return Double(stupidUnit) * 2.54
     }
 }
 //

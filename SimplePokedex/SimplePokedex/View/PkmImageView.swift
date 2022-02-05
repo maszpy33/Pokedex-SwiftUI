@@ -13,8 +13,6 @@ struct PokemonImage: View {
     var imgWidth:CGFloat = 75
     var imgHeight:CGFloat = 75
     @State private var pokemonSprite = ""
-
-    @State var cachedImage = UIImage(named: "hase.fill")
     
     var body: some View {
         HStack {
@@ -25,6 +23,9 @@ struct PokemonImage: View {
             } placeholder: {
                 ProgressView()
             }
+            .background(Color.gray)
+//            .padding(.vertical, 5)
+//            .padding(.horizontal, 5)
             .frame(width: imgWidth, height: imgHeight)
         }
         .onAppear {
@@ -46,8 +47,6 @@ struct PokemonImage: View {
         .scaledToFit()
         
     }
-    
-    static var defaultImage = UIImage(named: "hase.fill")
     
     func getSprite(url: String) {
         var tempSprite: String?
