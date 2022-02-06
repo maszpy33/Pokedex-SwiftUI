@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9F20A92E27AF02130095F23A /* PkmCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F20A92D27AF02130095F23A /* PkmCellView.swift */; };
+		9F4B44EF27B0720D00C54896 /* AnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B44EE27B0720D00C54896 /* AnimationExtension.swift */; };
 		9F772E3E27A88045004FB91D /* SimplePokedexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F772E3D27A88045004FB91D /* SimplePokedexApp.swift */; };
 		9F772E4027A88045004FB91D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F772E3F27A88045004FB91D /* ContentView.swift */; };
 		9F772E4227A8804C004FB91D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F772E4127A8804C004FB91D /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		9F20A92D27AF02130095F23A /* PkmCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PkmCellView.swift; sourceTree = "<group>"; };
+		9F4B44EE27B0720D00C54896 /* AnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtension.swift; sourceTree = "<group>"; };
 		9F772E3A27A88045004FB91D /* SimplePokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplePokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F772E3D27A88045004FB91D /* SimplePokedexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePokedexApp.swift; sourceTree = "<group>"; };
 		9F772E3F27A88045004FB91D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				9F772E5627A8832B004FB91D /* PkmImageView.swift */,
 				9FFF54B527A9E512000AE647 /* PkmDetailsView.swift */,
 				9F20A92D27AF02130095F23A /* PkmCellView.swift */,
+				9F4B44EE27B0720D00C54896 /* AnimationExtension.swift */,
 				9F772E4E27A8809C004FB91D /* PokedexView.swift */,
 			);
 			path = View;
@@ -188,6 +191,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F4B44EF27B0720D00C54896 /* AnimationExtension.swift in Sources */,
 				9F772E4F27A8809C004FB91D /* PokedexView.swift in Sources */,
 				9F772E5127A880B5004FB91D /* Pokemon.swift in Sources */,
 				9FF574D827AB422E0042750C /* PkmColorType.swift in Sources */,

@@ -45,7 +45,6 @@ struct PokemonImage: View {
         .clipShape(Circle())
         .foregroundColor(Color.gray.opacity(0.60))
         .scaledToFit()
-        
     }
     
     func getSprite(url: String) {

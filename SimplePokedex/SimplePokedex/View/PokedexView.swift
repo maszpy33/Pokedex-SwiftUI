@@ -14,32 +14,36 @@ struct PokedexView: View {
     
     private let gridItems = [GridItem(.flexible()), GridItem(.flexible())]
     
+    @State private var pokeAnimation = false
+    @State var animationAm: CGFloat = 0
+    
     var body: some View {
         NavigationView {
             VStack {
                 ScrollView {
                     LazyVGrid(columns: gridItems, spacing: 30) {
                         ForEach(searchText == "" ? pokemon : pokemon.filter( {$0.name.contains(searchText.lowercased()) } )) { entryPokemon in
-                            NavigationLink(destination: PokemonDetailsView(url: "\(entryPokemon.url)", pokeName: "\(entryPokemon.name)", selectedPokemon: entryPokemon)) {
+                            NavigationLink(destination: PokemonDetailsView(url: "\(entryPokemon.url)", pokeName: "\(entryPokemon.name)", selectedPokemon: entryPokemon), label: {
                                 PkmCellView(name: entryPokemon.name, pokemonURL: entryPokemon.url)
-                            }
+                            })
+                            .buttonStyle(Rotation3DAnimationStyle())
                         }
                     }
                 }
             }
-//            List {
-//                ForEach(searchText == "" ? pokemon : pokemon.filter( {$0.name.contains(searchText.lowercased())} )) { entryPokemon in
-//                    HStack {
-//                        PokemonImage(imageLink: "\(entryPokemon.url)")
-//                            .padding(.trailing, 20)
-//
-////                        NavigationLink("\(entryPokemon.name)".capitalized ,destination: Text("Detail view for \(entryPokemon.name)"))
-//                        NavigationLink(destination: PokemonDetailsView(url: "\(entryPokemon.url)", pokeName: "\(entryPokemon.name)", selectedPokemon: entryPokemon)) {
-//                            Text("\(entryPokemon.name)".capitalized)
-//                        }
-//                    }
-//                }
-//            }
+            //            List {
+            //                ForEach(searchText == "" ? pokemon : pokemon.filter( {$0.name.contains(searchText.lowercased())} )) { entryPokemon in
+            //                    HStack {
+            //                        PokemonImage(imageLink: "\(entryPokemon.url)")
+            //                            .padding(.trailing, 20)
+            //
+            ////                        NavigationLink("\(entryPokemon.name)".capitalized ,destination: Text("Detail view for \(entryPokemon.name)"))
+            //                        NavigationLink(destination: PokemonDetailsView(url: "\(entryPokemon.url)", pokeName: "\(entryPokemon.name)", selectedPokemon: entryPokemon)) {
+            //                            Text("\(entryPokemon.name)".capitalized)
+            //                        }
+            //                    }
+            //                }
+            //            }
             .onAppear {
                 PokemonApi().getData() { pokemon in
                     self.pokemon = pokemon

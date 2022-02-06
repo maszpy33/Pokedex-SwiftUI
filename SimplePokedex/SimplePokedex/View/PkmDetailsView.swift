@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct PokemonDetailsView: View {
-    @Environment(\.presentationMode) var presentationMode
+//    @Environment(\.presentationMode) var presentationMode
     
     var url = ""
     var pokeName = "Pokemon"
@@ -21,6 +21,11 @@ struct PokemonDetailsView: View {
     @State private var types = [PokemonTypes]()
     @State private var mainType: String = "grass"
     @State private var idNumber: Int = 404
+    
+    // Animation Variables
+    @State private var animationAmount = 0.0
+    @State private var isAnimated = false
+    @State var scale: CGFloat = 1
     
     var body: some View {
         NavigationView {
@@ -34,6 +39,10 @@ struct PokemonDetailsView: View {
                     
                     PokemonImage(imageLink: "\(selectedPokemon.url)", imgWidth: CGFloat(220), imgHeight: CGFloat(220))
                         .padding(.bottom, 20)
+//                        .rotation3DEffect(.degrees(animationAmount), axis: (x: 0, y: 1, z: 1))
+//                        .animation(.easeInOut(duration: 2.5), value: isAnimated)
+                        .scaleEffect(self.isAnimated ? 1 : 30)
+                        .animation(Animation.easeOut(duration: 0.4).delay(0.1), value: isAnimated)
                     
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Name: \(pokeName)".capitalized)
@@ -78,7 +87,7 @@ struct PokemonDetailsView: View {
                     }
                 }
                 .padding(50)
-                .background(getTypeColor(type: self.mainType).brightness(-0.5))
+                .background(getTypeColor(type: self.mainType).brightness(-0.3))
                 .foregroundColor(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 25))
                 .overlay(RoundedRectangle(cornerRadius: 25)
@@ -89,7 +98,7 @@ struct PokemonDetailsView: View {
                     minHeight: 0,
                     maxHeight: .infinity
                 )
-                //            .shadow(color: shadowColor(type: self.mainType), radius: 12)
+                .padding(.top, 50)
             }
             .ignoresSafeArea()
             
@@ -107,6 +116,10 @@ struct PokemonDetailsView: View {
                 print("\(types[0].type.name)")
                 print("Length: \(self.types.count)")
                 print("-------------------")
+                self.isAnimated.toggle()
+                withAnimation {
+                    self.animationAmount += 350
+                }
             }
         }
         .navigationBarTitle("Details Card:")
