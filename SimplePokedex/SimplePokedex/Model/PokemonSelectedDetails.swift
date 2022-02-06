@@ -15,9 +15,19 @@ struct PokemonSelected : Codable {
 
 struct PokemonSprites: Codable {
     var front_default: String?
+//    var other: PokemonDreamWorld
 }
 
+//struct PokemonDreamWorld: Codable {
+//    var dream_world: SVGimage
+//}
+//
+//struct SVGimage: Codable {
+//    var front_default: String?
+//}
+
 struct PokemonDetails: Codable {
+    var id: Int
     var weight: Int
     var height: Int
     var name: String
@@ -33,3 +43,4 @@ struct PokemonTypes: Codable {
 struct PokemonType: Codable {
     var name: String
 }
+

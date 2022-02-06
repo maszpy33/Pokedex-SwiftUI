@@ -21,7 +21,6 @@ class PokemonSelectedApi {
 
             DispatchQueue.main.async {
                 completion(pokemonSprite.sprites)
-                print("PokemonSelected get sprite")
 //                self.urlString = pokemonSprite.sprites.front_default
             }
         }.resume()

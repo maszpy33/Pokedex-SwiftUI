@@ -61,7 +61,8 @@ func getTypeColor(type: String?) -> Color {
         case "fighting":
             return Color(red: 1, green: 100/255, blue: 40/255)
         case "psychic":
-            return Color(red: 203/255, green: 195/255, blue: 227/255)
+//            return Color(red: 203/255, green: 195/255, blue: 227/255)
+            return Color(red: 1, green: 0, blue: 1)
         case "normal":
             return Color(red: 1, green: 153/255, blue: 51/255)
         default:

@@ -91,6 +91,8 @@
 		9F772E4B27A88069004FB91D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9F772E5427A882F2004FB91D /* PokemonSelected.swift */,
+				9FF574D527AB26F70042750C /* PokemonSelectedDetails.swift */,
 				9F772E5027A880B5004FB91D /* Pokemon.swift */,
 				9FF574D727AB422E0042750C /* PkmColorType.swift */,
 			);
@@ -112,8 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				9F772E5227A88160004FB91D /* PokemonApi.swift */,
-				9F772E5427A882F2004FB91D /* PokemonSelected.swift */,
-				9FF574D527AB26F70042750C /* PokemonSelectedDetails.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

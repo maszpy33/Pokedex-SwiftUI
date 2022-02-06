@@ -10,6 +10,7 @@ import SwiftUI
 struct PokedexView: View {
     @State var pokemon = [PokemonEntry]()
     @State var searchText = ""
+    @State private var pokemonCount: Int = 151
     
     private let gridItems = [GridItem(.flexible()), GridItem(.flexible())]
     
@@ -18,7 +19,7 @@ struct PokedexView: View {
             VStack {
                 ScrollView {
                     LazyVGrid(columns: gridItems, spacing: 30) {
-                        ForEach(searchText == "" ? pokemon : pokemon.filter( {$0.name.contains(searchText.lowercased())} )) { entryPokemon in
+                        ForEach(searchText == "" ? pokemon : pokemon.filter( {$0.name.contains(searchText.lowercased()) } )) { entryPokemon in
                             NavigationLink(destination: PokemonDetailsView(url: "\(entryPokemon.url)", pokeName: "\(entryPokemon.name)", selectedPokemon: entryPokemon)) {
                                 PkmCellView(name: entryPokemon.name, pokemonURL: entryPokemon.url)
                             }
